@@ -28,7 +28,7 @@ class ProductController extends Controller
      */
     public function index(): View
     {
-        return view('admin.products.index', [
+        return view('products.index', [
             'products' => Product::latest()->paginate(3)
         ]);
     }
@@ -38,7 +38,7 @@ class ProductController extends Controller
      */
     public function create(): View
     {
-        return view('admin.products.create');
+        return view('products.create');
     }
 
     /**
@@ -56,7 +56,7 @@ class ProductController extends Controller
      */
     public function show(Product $product): View
     {
-        return view('admin.products.show', [
+        return view('products.show', [
             'product' => $product
         ]);
     }
@@ -66,7 +66,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product): View
     {
-        return view('admin.products.edit', [
+        return view('products.edit', [
             'product' => $product
         ]);
     }
@@ -87,7 +87,7 @@ class ProductController extends Controller
     public function destroy(Product $product): RedirectResponse
     {
         $product->delete();
-        return redirect()->route('admin.products.index')
+        return redirect()->route('products.index')
                 ->withSuccess('Product is deleted successfully.');
     }
 }

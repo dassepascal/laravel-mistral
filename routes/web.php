@@ -22,10 +22,11 @@ use App\Http\Controllers\ProfileController;
 
 Route::get('/',[HomeController::class,'index'])->name('home');    
 
-// Route::middleware(['auth', 'role:admin'])->group(function () {
-//     Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
-// });
-Route::get('/admin', [AdminController::class, 'index'])->middleware('role:admin');
+// Route::resources([
+//     'roles' => RoleController::class,
+//     'users' => UserController::class,
+//     'products' => ProductController::class,
+// ]);
 
 
 Route::get('/dashboard', function () {
