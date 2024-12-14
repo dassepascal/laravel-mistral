@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +30,13 @@ Route::get('/',[HomeController::class,'index'])->name('home');
 //     'users' => UserController::class,
 //     'products' => ProductController::class,
 // ]);
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::resources([
+    'roles' => RoleController::class,
+    'users' => UserController::class,
+    'products' => ProductController::class,
+    ]);
+    });
 
 
 Route::get('/dashboard', function () {
