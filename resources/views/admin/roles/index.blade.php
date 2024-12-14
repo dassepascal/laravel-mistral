@@ -10,53 +10,68 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     @can('create-role')
-                        <x-link href="{{ route('roles.create') }}" class="btn btn-sm btn-success">
+                        <x-nav-link href="{{ route('admin.roles.create') }}" class="btn btn-sm btn-success">
                             <i class="bi bi-plus-circle"></i> Add New Role
-                        </x-link>
+                        </x-nav-link>
                     @endcan
 
                     <div class="mt-4">
                         <table class="table table-striped table-bordered">
                             <thead>
                                 <tr>
-                                    <th scope="col" class="px-6 py-3 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">S#</th>
-                                    <th scope="col" class="px-6 py-3 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Name</th>
-                                    <th scope="col" class="px-6 py-3 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider" style="width: 250px;">Action</th>
+                                    <th scope="col"
+                                        class="px-6 py-3 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                        S#</th>
+                                    <th scope="col"
+                                        class="px-6 py-3 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                        Name</th>
+                                    <th scope="col"
+                                        class="px-6 py-3 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider"
+                                        style="width: 300px;">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @forelse ($roles as $role)
-                                <tr>
-                                    <th scope="row" class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">{{ $loop->iteration }}</th>
-                                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">{{ $role->name }}</td>
-                                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                        <form action="{{ route('roles.destroy', $role->id) }}" method="post">
-                                            @csrf
-                                            @method('DELETE')
+                                    <tr>
+                                        <th scope="row"
+                                            class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                                            {{ $loop->iteration }}</th>
+                                        <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                                            {{ $role->name }}</td>
+                                        <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                                            <div class="flex items-center space-x-2">
+                                                <form action="{{ route('admin.roles.destroy', $role->id) }}" method="post">
+                                                    @csrf
+                                                    @method('DELETE')
 
-                                            <x-link href="{{ route('roles.show', $role->id) }}" class="btn btn-sm btn-warning">
-                                                <i class="bi bi-eye"></i> Show
-                                            </x-link>
+                                                    <x-nav-link href="{{ route('admin.roles.show', $role->id) }}"
+                                                        class="btn btn-sm btn-warning">
+                                                        <i class="bi bi-eye"></i> Show
+                                                    </x-nav-link>
 
-                                            @if ($role->name!='Super Admin')
-                                                @can('edit-role')
-                                                    <x-link href="{{ route('roles.edit', $role->id) }}" class="btn btn-sm btn-primary">
-                                                        <i class="bi bi-pencil-square"></i> Edit
-                                                    </x-link>
-                                                @endcan
+                                                    @if ($role->name != 'Super Admin')
+                                                        @can('edit-role')
+                                                            <x-nav-link href="{{ route('admin.roles.edit', $role->id) }}"
+                                                                class="btn btn-sm btn-primary">
+                                                                <i class="bi bi-pencil-square"></i> Edit
+                                                            </x-nav-link>
+                                                        @endcan
 
-                                                @can('delete-role')
-                                                    @if ($role->name!=Auth::user()->hasRole($role->name))
-                                                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Do you want to delete this role?');">
-                                                            <i class="bi bi-trash"></i> Delete
-                                                        </button>
+                                                        @can('delete-role')
+                                                            @if ($role->name != Auth::user()->hasRole($role->name))
+                                                            <x-danger-button type="submit" class="btn btn-sm btn-danger"
+                                                                onclick="return confirm('Do you want to delete this role?');">
+                                                                <i class="bi bi-trash"></i> Delete
+                                                            </x-danger-button>
+                                                          
+                                                            @endif
+                                                        @endcan
                                                     @endif
-                                                @endcan
-                                            @endif
 
-                                        </form>
-                                    </td>
-                                </tr>
+                                                </form>
+                                            </div>
+                                        </td>
+                                    </tr>
                                 @empty
                                     <td colspan="3" class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                                         <span class="text-danger">
@@ -67,7 +82,7 @@
                             </tbody>
                         </table>
 
-                        {{-- {{ $roles->links() }} --}}
+                        {{ $roles->links() }}
 
                     </div>
 
@@ -76,3 +91,4 @@
         </div>
     </div>
 </x-app-layout>
+
