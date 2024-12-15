@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Manage Roles') }}
+            {{ __('Manage Users') }}
         </h2>
     </x-slot>
 
@@ -11,7 +11,7 @@
                 <div class="p-6 bg-white border-b border-gray-200">
                     @can('create-role')
                         <x-nav-link href="{{ route('admin.roles.create') }}" class="btn btn-sm btn-success">
-                            <i class="bi bi-plus-circle"></i> Add New Role
+                            <i class="bi bi-plus-circle"></i> Add New User
                         </x-nav-link>
                     @endcan
 
@@ -31,34 +31,34 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($roles as $role)
+                                @forelse ($users as $user)
                                     <tr>
                                         <th scope="row"
                                             class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                                             {{ $loop->iteration }}</th>
                                         <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                            {{ $role->name }}</td>
+                                            {{ $user->name }}</td>
                                         <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                                             <div class="flex items-center space-x-2">
-                                                <form action="{{ route('admin.roles.destroy', $role->id) }}" method="post">
+                                                <form action="{{ route('admin.roles.destroy', $user->id) }}" method="post">
                                                     @csrf
                                                     @method('DELETE')
 
-                                                    <x-nav-link href="{{ route('admin.roles.show', $role->id) }}"
+                                                    <x-nav-link href="{{ route('admin.roles.show', $user->id) }}"
                                                         class="btn btn-sm btn-warning">
                                                         <i class="bi bi-eye"></i> Show
                                                     </x-nav-link>
 
-                                                    @if ($role->name != 'Super Admin')
+                                                    @if ($user->name != 'Super Admin')
                                                         @can('edit-role')
-                                                            <x-nav-link href="{{ route('admin.roles.edit', $role->id) }}"
+                                                            <x-nav-link href="{{ route('admin.roles.edit', $user->id) }}"
                                                                 class="btn btn-sm btn-primary">
                                                                 <i class="bi bi-pencil-square"></i> Edit
                                                             </x-nav-link>
                                                         @endcan
 
                                                         @can('delete-role')
-                                                            @if ($role->name != Auth::user()->hasRole($role->name))
+                                                            @if ($user->name != Auth::user()->hasRole($user->name))
                                                             <x-danger-button type="submit" class="btn btn-sm btn-danger mt-1"
                                                                 onclick="return confirm('Do you want to delete this role?');">
                                                                 <i class="bi bi-trash"></i> Delete
@@ -82,7 +82,7 @@
                             </tbody>
                         </table>
 
-                        {{ $roles->links() }}
+                        {{ $users->links() }}
 
                     </div>
 

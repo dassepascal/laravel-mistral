@@ -2,9 +2,75 @@
 @tailwind components;
 @tailwind utilities;
 
-
 body {
     font-family: 'Arial', sans-serif;
+}
+
+#block-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #16384c;
+}
+
+.container-card {
+    position: relative;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 30px;
+}
+
+.container-card .card {
+    position: relative;
+    max-width: 300px;
+    height: 215px;
+    background: red;
+    margin: 30px 60px;
+    padding: 20px 15px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    transition: 0.3s ease-in-out;
+}
+
+.container-card .card:hover {
+    height: 420px;
+}
+
+.container-card .card .imgBX {
+    background-color: #dc3545;
+    position: relative;
+    width: 200px;
+    height: 200px;
+    top: -60px;
+    left: 7px;
+    z-index: 1;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+.container-card .card .imgBX img {
+    max-width: 100%;
+    border-radius: 4px;
+}
+
+.container-card .card .content {
+    position: relative;
+    margin-top: -140px;
+    padding: 10px 15px;
+    text-align: center;
+    color: #111;
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.3s ease-in-out;
+}
+
+.container-card .card:hover .content {
+    visibility: visible;
+    opacity: 1;
+    margin-top: -40px;
+    transition-delay: 0.3s;
 }
 
 .container {
@@ -43,10 +109,8 @@ body {
 
 .btn-warning {
     background-color: rgb(255, 202, 44);
-
 }
 
 .btn-success {
     background-color: green;
 }
-

@@ -65,7 +65,7 @@ class RoleController extends Controller
             ->where("role_id",$role->id)
             ->select('name')
             ->get();
-        return view('roles.show', [
+        return view('admin.roles.show', [
             'role' => $role,
             'rolePermissions' => $rolePermissions
         ]);

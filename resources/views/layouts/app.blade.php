@@ -29,6 +29,11 @@
 
             <!-- Page Content -->
             <main>
+                @if ($message = Session::get('success'))
+                <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative w-3/4 mt-2 mx-auto " role="alert">
+                    {{ $message }}
+                </div>
+                @endif
                 {{ $slot }}
             </main>
         </div>
