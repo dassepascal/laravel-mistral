@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Product extends Model
 {
@@ -13,8 +14,17 @@ class Product extends Model
         'name',
         'slug',
         'description',
-        'active',
+       'sold',
         'image',
         'price',
+        'seo_title',
+        'meta_description',
+        'meta_keywords'
     ];
+
+    public function imageUrl()
+    {
+        return $this->image ? asset('storage/' . $this->image) : asset('images/default.jpg');
+    }
+    
 }

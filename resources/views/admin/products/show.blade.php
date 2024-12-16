@@ -16,9 +16,14 @@
                     @if ($product->image)
                         <div class="mb-4">
                             <label for="image" class="block text-gray-700">Image</label>
-                            <div class="mt-1">
-                                <img src="{{ $product->imageUrl() }}" alt="{{ $product->name }}" class="img-thumbnail">
-                            </div>
+                            @if ($product->image)
+                        <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}"
+                            class="bg-violet-500 w-full h-48 object-cover border border-gray-300 rounded-lg shadow-lg">
+                    @else
+                        <div class="w-full h-48 bg-gray-200 flex items-center justify-center">
+                            <span class="text-gray-500">Pas d'image</span>
+                        </div>
+                    @endif
                         </div>
                     @endif
                     <x-product.info :product="$product" />

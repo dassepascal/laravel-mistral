@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('slug')->unique();
             $table->mediumText('description');
-            $table->boolean('active')->default(false);
+            $table->boolean('sold')->default(false);
             $table->string('image')->nullable();
             $table->integer('price');
             $table->string('seo_title');

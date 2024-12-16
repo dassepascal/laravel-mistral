@@ -14,10 +14,11 @@
         <p class="text-gray-600 mb-4 h-20 overflow-hidden">{{ Str::limit($product->description, 100) }}</p>
         <div class="flex justify-between items-center">
             <span class="text-2xl font-bold text-indigo-600">{{ number_format($product->price / 100, 2, ',', ' ') }} €</span>
-            @if($product->active)
-                <span class="bg-green-500 text-white px-2 py-1 rounded-full text-sm">Disponible</span>
+            @if($product->sold)
+            <span class="bg-red-500 text-white px-2 py-1 rounded-full text-sm">Indisponible</span>
             @else
-                <span class="bg-red-500 text-white px-2 py-1 rounded-full text-sm">Indisponible</span>
+                
+                <span class="bg-green-500 text-white px-2 py-1 rounded-full text-sm">Disponible</span>
             @endif
         </div>
 

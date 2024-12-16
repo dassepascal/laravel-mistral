@@ -43,6 +43,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     'users' => UserController::class,
     'products' => ProductController::class,
     ]);
+    Route::put('products/{product}/update-slug', [ProductController::class, 'updateSlug'])->name('products.updateSlug');
     });
 
 

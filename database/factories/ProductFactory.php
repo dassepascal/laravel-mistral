@@ -26,7 +26,7 @@ class ProductFactory extends Factory
             'name' => $name,
             'slug' => Str::slug($name),
             'description' => $this->faker->paragraphs(3, true),
-            'active' => $this->faker->randomElement([true, false]),
+            'sold' => $this->faker->boolean,
             'image' => $this->faker->imageUrl($width=500, $height=500, 'cats')  ,
             'price' => $this->faker->numberBetween(1000, 100000),
             'seo_title' => $this->faker->sentence(),
