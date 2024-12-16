@@ -23,7 +23,14 @@ use App\Http\Controllers\Admin\ProductController;
 //     return view('welcome');
 // });
 
-Route::get('/',[HomeController::class,'index'])->name('home');    
+$idRedex = '[0-9]+';
+$slugRegex = '[a-z0-9-]+';
+
+Route::get('/',[HomeController::class,'index'])->name('home');  
+Route::get('/products/{slug}-{product}',[HomeController::class,'show'])->name('products.show')->where([
+    'slug' => $slugRegex,
+    'product' => $idRedex,
+]);  
 
 // Route::resources([
 //     'roles' => RoleController::class,
